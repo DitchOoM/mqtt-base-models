@@ -2,6 +2,7 @@
 
 package com.ditchoom.mqtt.controlpacket
 
+import com.ditchoom.buffer.PlatformBuffer
 import com.ditchoom.buffer.ReadBuffer
 import com.ditchoom.mqtt.controlpacket.ControlPacket.Companion.readVariableByteInteger
 
@@ -23,48 +24,13 @@ interface ControlPacketFactory {
         packetIdentifier: Int? = null,
         retain: Boolean = false,
         topicName: CharSequence,
-        payload: String? = null,
+        payload: PlatformBuffer? = null,
         // MQTT 5 Properties
         payloadFormatIndicator: Boolean = false,
         messageExpiryInterval: Long? = null,
         topicAlias: Int? = null,
         responseTopic: CharSequence? = null,
-        correlationData: String? = null,
-        userProperty: List<Pair<CharSequence, CharSequence>> = emptyList(),
-        subscriptionIdentifier: Set<Long> = emptySet(),
-        contentType: CharSequence? = null
-    ): IPublishMessage {
-        return publish(
-            dup,
-            qos,
-            packetIdentifier,
-            retain,
-            topicName,
-            payload?.let { GenericType(it, String::class) },
-            payloadFormatIndicator,
-            messageExpiryInterval,
-            topicAlias,
-            responseTopic,
-            correlationData?.let { GenericType(it, String::class) },
-            userProperty,
-            subscriptionIdentifier,
-            contentType
-        )
-    }
-
-    fun <ApplicationMessage : Any, CorrelationData : Any> publish(
-        dup: Boolean = false,
-        qos: QualityOfService = QualityOfService.EXACTLY_ONCE,
-        packetIdentifier: Int? = null,
-        retain: Boolean = false,
-        topicName: CharSequence,
-        payload: GenericType<ApplicationMessage>? = null,
-        // MQTT 5 Properties
-        payloadFormatIndicator: Boolean = false,
-        messageExpiryInterval: Long? = null,
-        topicAlias: Int? = null,
-        responseTopic: CharSequence? = null,
-        correlationData: GenericType<CorrelationData>? = null,
+        correlationData: PlatformBuffer? = null,
         userProperty: List<Pair<CharSequence, CharSequence>> = emptyList(),
         subscriptionIdentifier: Set<Long> = emptySet(),
         contentType: CharSequence? = null
