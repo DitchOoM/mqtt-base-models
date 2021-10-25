@@ -46,7 +46,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.ditchoom:buffer:1.0.41")
+                implementation("com.ditchoom:buffer:1.0.44")
             }
         }
         val commonTest by getting {
