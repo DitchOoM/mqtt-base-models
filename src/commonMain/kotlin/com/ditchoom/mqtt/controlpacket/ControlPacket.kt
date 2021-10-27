@@ -105,7 +105,7 @@ interface ControlPacket {
         }
 
 
-        fun ReadBuffer.variableByteSize(uInt: UInt): UByte {
+        fun variableByteSize(uInt: UInt): UByte {
             if (uInt !in 0.toUInt()..VARIABLE_BYTE_INT_MAX) {
                 throw MalformedInvalidVariableByteInteger(uInt)
             }
