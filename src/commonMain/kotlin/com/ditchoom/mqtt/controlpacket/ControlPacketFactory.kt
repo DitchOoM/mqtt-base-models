@@ -5,6 +5,7 @@ package com.ditchoom.mqtt.controlpacket
 import com.ditchoom.buffer.PlatformBuffer
 import com.ditchoom.buffer.ReadBuffer
 import com.ditchoom.mqtt.controlpacket.ControlPacket.Companion.readVariableByteInteger
+import com.ditchoom.mqtt.controlpacket.format.ReasonCode
 
 interface ControlPacketFactory {
     fun from(buffer: ReadBuffer): ControlPacket {
@@ -18,9 +19,16 @@ interface ControlPacketFactory {
     fun pingRequest(): IPingRequest
     fun pingResponse(): IPingResponse
 
+    fun subscribe(
+        packetIdentifier: Int,
+        subscriptions: Set<ISubscription>,
+        serverReference: CharSequence? = null,
+        userProperty: List<Pair<CharSequence, CharSequence>> = emptyList(),
+    ): ISubscribeRequest
+
     fun publish(
         dup: Boolean = false,
-        qos: QualityOfService = QualityOfService.EXACTLY_ONCE,
+        qos: QualityOfService = QualityOfService.AT_MOST_ONCE,
         packetIdentifier: Int? = null,
         retain: Boolean = false,
         topicName: CharSequence,
@@ -35,5 +43,13 @@ interface ControlPacketFactory {
         subscriptionIdentifier: Set<Long> = emptySet(),
         contentType: CharSequence? = null
     ): IPublishMessage
+
+    fun disconnect(
+        reasonCode: ReasonCode = ReasonCode.NORMAL_DISCONNECTION,
+        sessionExpiryIntervalSeconds: Long? = null,
+        reasonString: CharSequence? = null,
+        userProperty: List<Pair<CharSequence, CharSequence>> = emptyList(),
+    ): IDisconnectNotification
+
 
 }
