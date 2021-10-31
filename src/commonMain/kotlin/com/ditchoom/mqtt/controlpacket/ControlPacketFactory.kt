@@ -57,11 +57,13 @@ interface ControlPacketFactory {
     ): IPublishMessage
 
     fun unsubscribe(
+        packetIdentifier: Int,
         topic: CharSequence,
         userProperty: List<Pair<CharSequence, CharSequence>> = emptyList()
-    ) = unsubscribe(setOf(topic), userProperty)
+    ) = unsubscribe(packetIdentifier, setOf(topic), userProperty)
 
     fun unsubscribe(
+        packetIdentifier: Int,
         topics: Set<CharSequence>,
         userProperty: List<Pair<CharSequence, CharSequence>> = emptyList()
     ): IUnsubscribeRequest
