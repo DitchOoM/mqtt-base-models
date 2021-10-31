@@ -56,6 +56,16 @@ interface ControlPacketFactory {
         contentType: CharSequence? = null
     ): IPublishMessage
 
+    fun unsubscribe(
+        topic: CharSequence,
+        userProperty: List<Pair<CharSequence, CharSequence>> = emptyList()
+    ) = unsubscribe(setOf(topic), userProperty)
+
+    fun unsubscribe(
+        topics: Set<CharSequence>,
+        userProperty: List<Pair<CharSequence, CharSequence>> = emptyList()
+    ): IUnsubscribeRequest
+
     fun disconnect(
         reasonCode: ReasonCode = ReasonCode.NORMAL_DISCONNECTION,
         sessionExpiryIntervalSeconds: Long? = null,

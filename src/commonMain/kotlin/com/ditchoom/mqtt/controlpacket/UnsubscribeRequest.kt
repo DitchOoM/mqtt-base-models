@@ -1,3 +1,6 @@
 package com.ditchoom.mqtt.controlpacket
 
-interface IUnsubscribeRequest : ControlPacket
+interface IUnsubscribeRequest : ControlPacket {
+    val packetIdentifier: Int
+    val topics: Set<CharSequence>
+}
