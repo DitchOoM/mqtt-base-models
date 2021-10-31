@@ -5,6 +5,7 @@ package com.ditchoom.mqtt.controlpacket
 import com.ditchoom.buffer.PlatformBuffer
 import com.ditchoom.buffer.ReadBuffer
 import com.ditchoom.mqtt.controlpacket.ControlPacket.Companion.readVariableByteInteger
+import com.ditchoom.mqtt.controlpacket.ISubscription.RetainHandling
 import com.ditchoom.mqtt.controlpacket.format.ReasonCode
 
 interface ControlPacketFactory {
@@ -18,6 +19,17 @@ interface ControlPacketFactory {
 
     fun pingRequest(): IPingRequest
     fun pingResponse(): IPingResponse
+
+    fun subscribe(
+        packetIdentifier: Int,
+        topicFilter: CharSequence,
+        maximumQos: QualityOfService = QualityOfService.AT_LEAST_ONCE,
+        noLocal: Boolean = false,
+        retainAsPublished: Boolean = false,
+        retainHandling: RetainHandling = RetainHandling.SEND_RETAINED_MESSAGES_AT_TIME_OF_SUBSCRIBE,
+        serverReference: CharSequence? = null,
+        userProperty: List<Pair<CharSequence, CharSequence>> = emptyList(),
+    ): ISubscribeRequest
 
     fun subscribe(
         packetIdentifier: Int,
