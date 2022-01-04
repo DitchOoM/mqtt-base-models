@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.5.31"
+    kotlin("multiplatform") version "1.6.10"
     id("com.android.library")
     id("io.codearte.nexus-staging") version "0.30.0"
     `maven-publish`
@@ -46,7 +46,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.ditchoom:buffer:1.0.53")
+                implementation("com.ditchoom:buffer:1.0.54")
             }
         }
         val commonTest by getting {
@@ -101,11 +101,12 @@ System.getenv("GITHUB_REPOSITORY")?.let {
     val developerEmail: String by project
     val developerId: String by project
 
-    val libraryVersion = if (System.getenv("GITHUB_RUN_NUMBER") != null) {
-        "$libraryVersionPrefix${System.getenv("GITHUB_RUN_NUMBER")}"
-    } else {
-        "${libraryVersionPrefix}0-SNAPSHOT"
-    }
+    val libraryVersion = "1.0.11"
+//        if (System.getenv("GITHUB_RUN_NUMBER") != null) {
+//        "$libraryVersionPrefix${System.getenv("GITHUB_RUN_NUMBER")}"
+//    } else {
+//        "${libraryVersionPrefix}0-SNAPSHOT"
+//    }
 
     project.group = publishedGroupId
     project.version = libraryVersion

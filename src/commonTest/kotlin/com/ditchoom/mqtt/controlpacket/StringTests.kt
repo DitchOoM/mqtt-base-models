@@ -53,9 +53,9 @@ class StringTests {
 //        assertEquals(string.value, buffer.readMqttUtf8StringNotValidated().toString())
 //    }
 
-    @Test
-    @JsName("latinCaptialNoNormativeTest")
-    fun `The string AuD869uDED4 which is LATIN CAPITAL Letter A followed by the code point U+2A6D4 (which represents a CJK IDEOGRAPH EXTENSION B character) is encoded`() {
+//    @Test
+//    @JsName("latinCaptialNoNormativeTest")
+//    fun `The string AuD869uDED4 which is LATIN CAPITAL Letter A followed by the code point U+2A6D4 (which represents a CJK IDEOGRAPH EXTENSION B character) is encoded`() {
 //        val string = MqttUtf8String("A\uD869\uDED4")
 //        val actual = string.getValueOrThrow()
 //        assertEquals("A𪛔", "A\uD869\uDED4")
@@ -67,7 +67,7 @@ class StringTests {
 //        assertEquals(0xAA.toByte(), packet.readByte())
 //        assertEquals(0x9B.toByte(), packet.readByte())
 //        assertEquals(0x94.toByte(), packet.readByte())
-    }
+//    }
 
     @Test
     fun controlCharacterU0001toU001F() {

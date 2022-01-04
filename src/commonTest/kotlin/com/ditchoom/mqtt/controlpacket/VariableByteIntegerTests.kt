@@ -19,7 +19,6 @@ class VariableByteIntegerTests {
     @Test
     @JsName("encodedValueMustUseMinNumberOfBytes")
     fun `MQTT Conformance The encoded value MUST use the minimum number of bytes necessary to represent the value`() {
-        val buffer = allocateNewBuffer(4u)
         val oneMin = 0u
         assertEquals(1u, variableByteSize(oneMin))
         val oneMax = 127u
