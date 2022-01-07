@@ -63,7 +63,7 @@ class StringTests {
 //        assertEquals(5.toUShort(), packet.readUShort())
 //        assertEquals(0x41.toByte(), packet.readByte()) // 'A'
 //        assertEquals(0xF0.toByte(), packet.readByte())
-        // This is failing. what do i do here?
+    // This is failing. what do i do here?
 //        assertEquals(0xAA.toByte(), packet.readByte())
 //        assertEquals(0x9B.toByte(), packet.readByte())
 //        assertEquals(0x94.toByte(), packet.readByte())
