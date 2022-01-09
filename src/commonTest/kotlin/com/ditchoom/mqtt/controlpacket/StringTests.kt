@@ -3,6 +3,7 @@
 package com.ditchoom.mqtt.controlpacket
 
 import kotlin.js.JsName
+import kotlin.jvm.JvmName
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -28,6 +29,7 @@ class StringTests {
 
     @Test
     @JsName("utf8DoesNotHaveNull")
+    @JvmName("utf8DoesNotHaveNull")
     fun `MQTT Conformance A UTF-8 Encoded String MUST NOT include an encoding of the null character U+0000`() {
         val string = MqttUtf8String("\u0000")
         try {

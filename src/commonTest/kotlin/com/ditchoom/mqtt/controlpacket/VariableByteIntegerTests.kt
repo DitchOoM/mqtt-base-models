@@ -8,6 +8,7 @@ import com.ditchoom.mqtt.controlpacket.ControlPacket.Companion.readVariableByteI
 import com.ditchoom.mqtt.controlpacket.ControlPacket.Companion.variableByteSize
 import com.ditchoom.mqtt.controlpacket.ControlPacket.Companion.writeVariableByteInteger
 import kotlin.js.JsName
+import kotlin.jvm.JvmName
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -18,6 +19,7 @@ class VariableByteIntegerTests {
 
     @Test
     @JsName("encodedValueMustUseMinNumberOfBytes")
+    @JvmName("encodedValueMustUseMinNumberOfBytes")
     fun `MQTT Conformance The encoded value MUST use the minimum number of bytes necessary to represent the value`() {
         val oneMin = 0u
         assertEquals(1u, variableByteSize(oneMin))
