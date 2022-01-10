@@ -2,12 +2,13 @@
 
 package com.ditchoom.mqtt.topic
 
-import com.ditchoom.buffer.Parcelable
+import com.ditchoom.mqtt.base.Parcelable
+import com.ditchoom.mqtt.base.Parcelize
 import com.ditchoom.mqtt.controlpacket.MqttUtf8String
-import com.ditchoom.mqtt.parcel.Parcelize
 
 @Parcelize
-data class Filter(val topicFilter: CharSequence) : Parcelable {
+class Filter(private val topicFilter: String) : Parcelable {
+    constructor(filter: CharSequence): this(filter.toString())
     fun validate(asServer: Boolean = false): Node? {
         return try {
             val rootNode = Node.from(MqttUtf8String(topicFilter))

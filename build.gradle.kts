@@ -55,12 +55,40 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
+        val androidMain by getting {
+            kotlin.srcDir("src/androidMain/kotlin")
+        }
+        val jvmMain by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val jsMain by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val macosX64Main by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val linuxX64Main by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val iosMain by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val iosSimulatorArm64Main by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val watchosMain by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val tvosMain by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
     }
 }
 
 android {
     compileSdkVersion(31)
-    sourceSets["main"].manifest.srcFile("src/main/AndroidManifest.xml")
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].java.srcDir("src/androidMain/kotlin")
     defaultConfig {
         minSdkVersion(1)
         targetSdkVersion(31)
