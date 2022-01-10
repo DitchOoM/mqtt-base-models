@@ -56,7 +56,10 @@ kotlin {
             }
         }
         val androidMain by getting {
-            kotlin.srcDir("src/androidMain/kotlin")
+            kotlin.srcDir("src/androidMain/java")
+        }
+        val androidRelease by getting {
+            kotlin.srcDir("src/androidMain/java")
         }
         val jvmMain by getting {
             kotlin.srcDir("src/commonNoAndroid/kotlin")
@@ -74,6 +77,9 @@ kotlin {
             kotlin.srcDir("src/commonNoAndroid/kotlin")
         }
         val iosSimulatorArm64Main by getting {
+            kotlin.srcDir("src/commonNoAndroid/kotlin")
+        }
+        val iosArm64Main by getting {
             kotlin.srcDir("src/commonNoAndroid/kotlin")
         }
         val watchosMain by getting {
