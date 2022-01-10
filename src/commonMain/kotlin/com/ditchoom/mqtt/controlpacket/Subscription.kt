@@ -1,8 +1,9 @@
 package com.ditchoom.mqtt.controlpacket
 
+import com.ditchoom.buffer.Parcelable
 import com.ditchoom.mqtt.topic.Filter
 
-interface ISubscription {
+interface ISubscription : Parcelable {
     val topicFilter: Filter
     val maximumQos: QualityOfService
 

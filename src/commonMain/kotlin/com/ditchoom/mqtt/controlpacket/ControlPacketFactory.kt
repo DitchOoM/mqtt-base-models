@@ -2,13 +2,14 @@
 
 package com.ditchoom.mqtt.controlpacket
 
-import com.ditchoom.buffer.PlatformBuffer
+import com.ditchoom.buffer.Parcelable
+import com.ditchoom.buffer.ParcelablePlatformBuffer
 import com.ditchoom.buffer.ReadBuffer
 import com.ditchoom.mqtt.controlpacket.ControlPacket.Companion.readVariableByteInteger
 import com.ditchoom.mqtt.controlpacket.ISubscription.RetainHandling
 import com.ditchoom.mqtt.controlpacket.format.ReasonCode
 
-interface ControlPacketFactory {
+interface ControlPacketFactory : Parcelable {
     fun from(buffer: ReadBuffer): ControlPacket {
         val byte1 = buffer.readUnsignedByte()
         val remainingLength = buffer.readVariableByteInteger()
@@ -44,13 +45,13 @@ interface ControlPacketFactory {
         packetIdentifier: Int? = null,
         retain: Boolean = false,
         topicName: CharSequence,
-        payload: PlatformBuffer? = null,
+        payload: ParcelablePlatformBuffer? = null,
         // MQTT 5 Properties
         payloadFormatIndicator: Boolean = false,
         messageExpiryInterval: Long? = null,
         topicAlias: Int? = null,
         responseTopic: CharSequence? = null,
-        correlationData: PlatformBuffer? = null,
+        correlationData: ParcelablePlatformBuffer? = null,
         userProperty: List<Pair<CharSequence, CharSequence>> = emptyList(),
         subscriptionIdentifier: Set<Long> = emptySet(),
         contentType: CharSequence? = null

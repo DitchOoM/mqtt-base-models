@@ -2,6 +2,7 @@
 
 package com.ditchoom.mqtt.controlpacket
 
+import com.ditchoom.buffer.Parcelable
 import com.ditchoom.buffer.ReadBuffer
 import com.ditchoom.buffer.WriteBuffer
 import com.ditchoom.mqtt.MalformedInvalidVariableByteInteger
@@ -10,7 +11,7 @@ import com.ditchoom.mqtt.controlpacket.format.fixed.DirectionOfFlow
 import kotlin.experimental.and
 import kotlin.experimental.or
 
-interface ControlPacket {
+interface ControlPacket : Parcelable {
     val controlPacketValue: Byte
     val direction: DirectionOfFlow
     val flags: Byte get() = 0b0
