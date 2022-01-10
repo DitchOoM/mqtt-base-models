@@ -55,16 +55,12 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting {
-            kotlin.srcDir("src/androidMain/kotlin")
-        }
     }
 }
 
 android {
     compileSdkVersion(31)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].java.srcDir("src/androidMain/kotlin")
+    sourceSets["main"].manifest.srcFile("src/main/AndroidManifest.xml")
     defaultConfig {
         minSdkVersion(1)
         targetSdkVersion(31)

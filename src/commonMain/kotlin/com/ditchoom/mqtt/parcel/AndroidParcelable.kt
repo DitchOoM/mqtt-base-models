@@ -1,6 +1,7 @@
-package com.ditchoom.mqtt
+@file:OptIn(ExperimentalMultiplatform::class)
 
-@OptIn(ExperimentalMultiplatform::class)
+package com.ditchoom.mqtt.parcel
+
 @OptionalExpectation
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.BINARY)
