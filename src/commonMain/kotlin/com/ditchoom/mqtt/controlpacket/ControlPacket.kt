@@ -31,8 +31,8 @@ interface ControlPacket : Parcelable {
 
     fun variableHeader(writeBuffer: WriteBuffer) {}
     fun payload(writeBuffer: WriteBuffer) {}
-    fun packetSize() = 2u + remainingLength()
-    fun remainingLength() = 0u
+    fun packetSize() = 2 + remainingLength()
+    fun remainingLength() = 0
 
     fun validateOrGetWarning(): MqttWarning? = null
 
@@ -44,7 +44,7 @@ interface ControlPacket : Parcelable {
 
     companion object {
 
-        private val VARIABLE_BYTE_INT_MAX = 268435455.toUInt()
+        private val VARIABLE_BYTE_INT_MAX = 268435455
 
         fun isValidFirstByte(uByte: UByte): Boolean {
             val byte1AsUInt = uByte.toUInt()
@@ -52,12 +52,12 @@ interface ControlPacket : Parcelable {
         }
 
 
-        fun WriteBuffer.writeVariableByteInteger(uInt: UInt): WriteBuffer {
-            if (uInt !in 0.toUInt()..VARIABLE_BYTE_INT_MAX) {
-                throw MalformedInvalidVariableByteInteger(uInt)
+        fun WriteBuffer.writeVariableByteInteger(int: Int): WriteBuffer {
+            if (int !in 0..VARIABLE_BYTE_INT_MAX) {
+                throw MalformedInvalidVariableByteInteger(int)
             }
             var numBytes = 0
-            var no = uInt.toLong()
+            var no = int.toLong()
             do {
                 var digit = (no % 128).toByte()
                 no /= 128
@@ -78,13 +78,13 @@ interface ControlPacket : Parcelable {
             return this
         }
 
-        fun ReadBuffer.readMqttUtf8StringNotValidatedSized(): Pair<UInt, CharSequence> {
-            val length = readUnsignedShort().toUInt()
+        fun ReadBuffer.readMqttUtf8StringNotValidatedSized(): Pair<Int, CharSequence> {
+            val length = readUnsignedShort().toInt()
             val decoded = readUtf8(length)
             return Pair(length, decoded)
         }
 
-        fun ReadBuffer.readVariableByteInteger(): UInt {
+        fun ReadBuffer.readVariableByteInteger(): Int {
             var digit: Byte
             var value = 0L
             var multiplier = 1L
@@ -97,26 +97,26 @@ interface ControlPacket : Parcelable {
                     multiplier *= 128
                 } while ((digit and 0x80.toByte()).toInt() != 0)
             } catch (e: Exception) {
-                throw MalformedInvalidVariableByteInteger(value.toUInt())
+                throw MalformedInvalidVariableByteInteger(value.toInt())
             }
             if (value < 0 || value > VARIABLE_BYTE_INT_MAX.toLong()) {
-                throw MalformedInvalidVariableByteInteger(value.toUInt())
+                throw MalformedInvalidVariableByteInteger(value.toInt())
             }
-            return value.toUInt()
+            return value.toInt()
         }
 
 
-        fun variableByteSize(uInt: UInt): UByte {
-            if (uInt !in 0.toUInt()..VARIABLE_BYTE_INT_MAX) {
-                throw MalformedInvalidVariableByteInteger(uInt)
+        fun variableByteSize(int: Int): Byte {
+            if (int !in 0..VARIABLE_BYTE_INT_MAX) {
+                throw MalformedInvalidVariableByteInteger(int)
             }
-            var numBytes = 0
-            var no = uInt.toLong()
+            var numBytes = 0.toByte()
+            var no = int
             do {
                 no /= 128
                 numBytes++
             } while (no > 0 && numBytes < 4)
-            return numBytes.toUByte()
+            return numBytes
         }
     }
 }

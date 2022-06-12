@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform") version "1.6.10"
+    kotlin("multiplatform") version "1.6.20"
     id("com.android.library")
     id("io.codearte.nexus-staging") version "0.30.0"
     `maven-publish`
     signing
-    id("org.jetbrains.kotlin.plugin.parcelize") version "1.6.10"
+    id("org.jetbrains.kotlin.plugin.parcelize") version "1.6.20"
 }
 
 val libraryVersionPrefix: String by project
@@ -47,7 +47,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.ditchoom:buffer:1.0.56")
+                implementation("com.ditchoom:buffer:1.0.81")
             }
         }
         val commonTest by getting {
@@ -136,11 +136,7 @@ System.getenv("GITHUB_REPOSITORY")?.let {
     val developerEmail: String by project
     val developerId: String by project
 
-    val libraryVersion = if (System.getenv("GITHUB_RUN_NUMBER") != null) {
-        "$libraryVersionPrefix${System.getenv("GITHUB_RUN_NUMBER")}"
-    } else {
-        "${libraryVersionPrefix}0-SNAPSHOT"
-    }
+    val libraryVersion = "1.0.28"
 
     project.group = publishedGroupId
     project.version = libraryVersion

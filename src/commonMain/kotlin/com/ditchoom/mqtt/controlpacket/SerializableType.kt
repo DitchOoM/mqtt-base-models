@@ -23,7 +23,7 @@ interface MqttSerializable<T : Any> : MqttSerializationStrategy<T>, MqttDeserial
 
 object ByteArraySerializer : MqttSerializable<ByteArray> {
     override fun serialize(obj: ByteArray, writeBuffer: WriteBuffer) {
-        writeBuffer.writeVariableByteInteger(obj.size.toUInt())
+        writeBuffer.writeVariableByteInteger(obj.size)
         writeBuffer.write(obj)
     }
 

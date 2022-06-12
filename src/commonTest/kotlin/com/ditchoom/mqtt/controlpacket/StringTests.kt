@@ -47,7 +47,7 @@ class StringTests {
 //        val string = MqttUtf8String("\uFEFF")
 //        val actual = string.getValueOrThrow()
 //        assertEquals("\uFEFF", actual)
-//        val buffer = allocateNewBuffer(6u, limits = object : BufferMemoryLimit {
+//        val buffer = PlatformBuffer.allocate(6u, limits = object : BufferMemoryLimit {
 //            override fun isTooLargeForMemory(size: UInt) = false
 //        })
 //        buffer.writeUtf8String(string.value)

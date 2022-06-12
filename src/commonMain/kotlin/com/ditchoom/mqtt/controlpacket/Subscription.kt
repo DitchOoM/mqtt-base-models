@@ -4,7 +4,7 @@ import com.ditchoom.buffer.Parcelable
 import com.ditchoom.mqtt.topic.Filter
 
 interface ISubscription : Parcelable {
-    val topicFilter: Filter
+    val topicFilter: String
     val maximumQos: QualityOfService
 
     // mqtt 5
