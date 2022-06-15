@@ -47,7 +47,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("com.ditchoom:buffer:1.0.83")
+                implementation("com.ditchoom:buffer:1.0.85")
             }
         }
         val commonTest by getting {
@@ -96,7 +96,7 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].java.srcDir("src/androidMain/kotlin")
     defaultConfig {
-        minSdkVersion(1)
+        minSdkVersion(9)
         targetSdkVersion(31)
     }
     lintOptions {
